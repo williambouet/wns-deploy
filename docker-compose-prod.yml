@@ -17,7 +17,7 @@ services:
       - web-client-build:/app/build
     environment:
       - NODE_ENV=production
-      - REACT_APP_GRAPHQL_ENDPOINT=http://localhost:${GATEWAY_PORT}/graphql  
+      - REACT_APP_GRAPHQL_ENDPOINT=https://quest-demo.wns.wilders.dev/graphql  
   mongodb:
     image: mongo:5.0.3
   nginx:
