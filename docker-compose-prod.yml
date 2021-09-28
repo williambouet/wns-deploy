@@ -20,7 +20,7 @@ services:
       - NODE_ENV=production
       - REACT_APP_GRAPHQL_ENDPOINT=https://quest-demo.wns.wilders.dev/graphql  
   mongodb:
-    image: mongo:5.0.3
+    image: mongo:4.4.3
   nginx:
     image: nginx:1.21.3
     depends_on:
