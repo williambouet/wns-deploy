@@ -1,3 +1,3 @@
 # wns-deploy
 
-continuous deployment 101
+continuous deployment 102
