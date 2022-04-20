@@ -3,12 +3,12 @@
   "title": "deploy to production",
   "steps": [
     {
-      "file": "docker-compose-prod.yml",
-      "description": "This file describes to docker how to build and start the `server`, the `client`, the `database` and a `reverse-proxy server`.\n\nIt is important to specify the version for later deployments.\n\nNote the name has `-prod` at the end to differenciate it from a `dev` docker-compose file.\n*dev and prod won't execute the same commands*\n\nIn this case we override the `default commands` specified in the docker files (used for development) by the commands used for production.\n",
+      "file": "docker-compose.yml",
+      "description": "This file describes to docker how to build and start the `server`, the `client`, the `database` and a `reverse-proxy server`.\n\nIt is important to specify the version for later deployments.\n\nNote the name has not `prod` at the end. This means this file should be considered as a `dev` docker-compose file. Indeed, launch services are built from local sources.\n*dev and prod won't execute the same commands*\n\nIn this case we override the `default commands` specified in the docker files (used for development) by the commands used for production.\n",
       "line": 1
     },
     {
-      "file": "docker-compose-prod.yml",
+      "file": "docker-compose.yml",
       "description": "The `server container` will be built as described the in the file `./server/Dockerfile` ",
       "line": 5
     },
@@ -38,28 +38,28 @@
       "line": 11
     },
     {
-      "file": "docker-compose-prod.yml",
+      "file": "docker-compose.yml",
       "description": "This is why we are overriding the default command to build and run the server.",
       "line": 6
     },
     {
-      "file": "docker-compose-prod.yml",
+      "file": "docker-compose.yml",
       "description": "Same as the server, we need to override the default command to build the `react application`.\n\nThe result of the `npm run build` will be `static files` (html, images, css and js). ",
       "line": 16
     },
     {
-      "file": "docker-compose-prod.yml",
+      "file": "docker-compose.yml",
       "description": "After the build command the `static files` are in the local `client container` folder `/app/build`.\n\nCreating a volume makes them accessible to other containers.",
       "line": 18
     },
     {
-      "file": "docker-compose-prod.yml",
+      "file": "docker-compose.yml",
       "description": "This is the official image of `nginx`\nThis is a crucial part of our application as it will be in charge to dispatch `http requests` either to `server` or to `client` based on the `url`",
       "line": 25
     },
     {
-      "file": "docker-compose-prod.yml",
-      "description": "The nginx is running locally on port `80`\n\n`GATEWAY_PORT` will be chosen when we run the docker-compose command.\n\nFor instance\n```\nGATEWAY_PORT=8000 docker-compose -f docker-compose-prod.yml up --build\n```\nwill specify that the port 8000 of the host (the server) will redirect to the port 80 of the `nginx container`.",
+      "file": "docker-compose.yml",
+      "description": "The nginx is running locally on port `80`\n\n`GATEWAY_PORT` will be chosen when we run the docker-compose command (note that the `:-8000` specify the default value if the env var is not specified).\n\nFor instance\n```\nGATEWAY_PORT=8000 docker-compose -f docker-compose.yml up --build\n```\nwill specify that the port 8000 of the host (the server) will redirect to the port 80 of the `nginx container`.",
       "line": 31,
       "selection": {
         "start": {
@@ -73,7 +73,7 @@
       }
     },
     {
-      "file": "docker-compose-prod.yml",
+      "file": "docker-compose.yml",
       "description": "Replaces the `nginx container` conf by the local file.",
       "line": 33
     },
